@@ -12,10 +12,16 @@ CREATE TABLE IF NOT EXISTS shows (
     country VARCHAR(50)
 );
 
-CREATE TABLE IF NOT EXISTS user_votes (
-    user_id INT, -- figure out how to reference eventual user table/db
+CREATE TABLE IF NOT EXISTS performances (
+    id SERIAL PRIMARY KEY,
     song_id INT,
     show_id INT,
     FOREIGN KEY(song_id) REFERENCES songs(id),
     FOREIGN KEY(show_id) REFERENCES shows(id)
+);
+
+CREATE TABLE IF NOT EXISTS user_votes (
+    user_id INT, -- figure out how to reference eventual user table/db
+    performance_id INT,
+    FOREIGN KEY(performance_id) REFERENCES performances(id)
 );
