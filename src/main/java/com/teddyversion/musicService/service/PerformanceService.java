@@ -16,4 +16,8 @@ public class PerformanceService {
     public List<Performance> getAllPerformances() {
         return performanceRepository.findAll();
     }
+
+    public List<Performance> getAllPerformancesBySong(int song_id) {
+        return performanceRepository.findAllBySongId(song_id);
+    }
 }

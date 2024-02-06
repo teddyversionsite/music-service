@@ -4,9 +4,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@AllArgsConstructor(access=AccessLevel.PACKAGE)
+@NoArgsConstructor(access=AccessLevel.PACKAGE)
+@Builder
+@Getter
+@Setter(value=AccessLevel.PACKAGE)
 @Entity(name="performances")
 public class Performance {
     @Id
