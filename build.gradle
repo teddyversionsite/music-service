@@ -4,6 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'io.freefair.lombok' version '8.4'
 	id 'cz.habarta.typescript-generator' version '3.2.1263'
+	id 'com.google.cloud.tools.jib' version '3.4.0'
 }
 
 group = 'com.teddyversion'
@@ -38,4 +39,12 @@ generateTypeScript {
         'com.teddyversion.musicService.entity.*'
     ]
     outputKind = 'module'
+}
+
+jib {
+	from.image = 'eclipse-temurin:21-jre'
+	to {
+		image = 'us-west4-docker.pkg.dev/teddyversion/docker/musicservice'
+		credHelper = 'gcloud'
+	}
 }

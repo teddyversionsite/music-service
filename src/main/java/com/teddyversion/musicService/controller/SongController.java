@@ -17,7 +17,7 @@ public class SongController {
     SongService songService;
 
     @GetMapping("/")
-    public List<Song> getSong() {
+    public List<Song> getAllSongs() {
         return songService.getAllSongs();
     }
 }
