@@ -21,7 +21,9 @@ CREATE TABLE IF NOT EXISTS performances (
 );
 
 CREATE TABLE IF NOT EXISTS user_votes (
+    id SERIAL PRIMARY KEY,
     user_id INT, -- figure out how to reference eventual user table/db
     performance_id INT,
-    FOREIGN KEY(performance_id) REFERENCES performances(id)
+    FOREIGN KEY(performance_id) REFERENCES performances(id),
+    UNIQUE(user_id, performance_id)
 );

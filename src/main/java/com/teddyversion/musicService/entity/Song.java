@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity(name="songs")
 public class Song {
     @Id
-    private long id;
+    private int id;
 
     private String displayName;   
 }

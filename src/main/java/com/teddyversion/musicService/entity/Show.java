@@ -19,7 +19,7 @@ import lombok.Setter;
 @Entity(name="shows")
 public class Show {
     @Id
-    private long id;
+    private int id;
 
     private Date showDate;
     private String venue;

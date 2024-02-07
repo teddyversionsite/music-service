@@ -9,3 +9,9 @@ Added the excellent [typescript-generator](https://github.com/vojtechhabarta/typ
 ### Containerization
 
 We use [jib]() to package everything up for us. `gradle jib` does all the heavy lifting and outputs a tagged image.
+
+### Demo data
+
+For now, we'll just use a test class to stuff data in for testing purposes. Eventually, we'll have a service that runs on cron to pull from the [elgoose](https://elgoose.net/api/docs/) api to keep the music stuff up to date.
+
+Run the test in `src/test/java/com/teddyversion/musicService/demo/TestData.java` to recreate the necessary data.

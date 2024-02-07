@@ -1,9 +1,5 @@
 package com.teddyversion.musicService.repository;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
@@ -17,9 +13,9 @@ import org.springframework.test.context.TestPropertySource;
 import com.teddyversion.musicService.entity.Performance;
 import com.teddyversion.musicService.entity.Show;
 import com.teddyversion.musicService.entity.Song;
+import com.teddyversion.musicService.util.DateTools;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 
 @SpringBootTest
 @TestPropertySource(value="classpath:application-dev.properties")
@@ -34,38 +30,27 @@ public class PerformanceRespositoryTest {
     @Autowired
     PerformanceRepository performanceRepository;
 
-    private Date stringToDate(String dateString) {
-        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-        try {
-            return new Date(df.parse(dateString).getTime());
-        } catch (ParseException pe) {
-            fail("bad date parsing");
-            // should never return because of the fail but whatever
-            return new Date(0l);
-        }
-    }
-
     Song moby = Song.builder().id(-1).displayName("moby").build();
     Song dragonfly = Song.builder().id(-2).displayName("dragonfly").build();
     Song madhuvan = Song.builder().id(-3).displayName("madhuvan").build();
 
     Show lv1 = Show.builder()
             .id(-1)
-            .showDate(stringToDate("2021-06-19"))
+            .showDate(DateTools.stringToDate("2021-06-19"))
             .venue("Legend Valley")
             .city("Thornville")
             .state("OH")
             .build();
     Show lv2 = Show.builder()
             .id(-2)
-            .showDate(stringToDate("2022-06-10"))
+            .showDate(DateTools.stringToDate("2022-06-10"))
             .venue("Legend Valley")
             .city("Thornville")
             .state("OH")
             .build();
     Show missoula = Show.builder()
             .id(-3)
-            .showDate(stringToDate("2023-09-22"))
+            .showDate(DateTools.stringToDate("2023-09-22"))
             .venue("Kettlehouse Amphitheater")
             .city("Bonner")
             .state("MT")
