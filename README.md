@@ -15,3 +15,7 @@ We use [jib]() to package everything up for us. `gradle jib` does all the heavy 
 For now, we'll just use a test class to stuff data in for testing purposes. Eventually, we'll have a service that runs on cron to pull from the [elgoose](https://elgoose.net/api/docs/) api to keep the music stuff up to date.
 
 Run the test in `src/test/java/com/teddyversion/musicService/demo/TestData.java` to recreate the necessary data.
+
+### Local development
+
+Added some docker to ease local development in `/docker`. There's a `start_postgres.sh` script to start the postgres database and create the required `music` db before starting the spring boot service (which runs flyway expecting it to be there). And a `start_nginx.sh` script to boot up a reverse proxy to get around CORS. `localhost:9000` will be used with the `/musicservice/` path proxying to this service.
