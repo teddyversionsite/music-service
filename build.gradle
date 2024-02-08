@@ -18,6 +18,19 @@ repositories {
 	mavenCentral()
 }
 
+sourceSets {
+    dbTest {
+		java.srcDir '$projectDir/src/dbTest/java'
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+configurations {
+    dbTestImplementation.extendsFrom testImplementation
+    dbTestRuntimeOnly.extendsFrom runtimeOnly
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -48,3 +61,20 @@ jib {
 		credHelper = 'gcloud'
 	}
 }
+
+tasks.register('dbTest', Test) {
+    description = 'Runs database integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.dbTest.output.classesDirs
+    classpath = sourceSets.dbTest.runtimeClasspath
+    shouldRunAfter test
+
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed"
+    }
+}
+
+check.dependsOn dbTest
