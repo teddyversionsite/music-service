@@ -1,8 +1,14 @@
 package com.teddyversion.musicService.service;
 
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+import org.junit.jupiter.api.Test;
+
 public class UserVoteServiceTest {
-    
+
+
+    @Test
+    public void testFailForCI() {
+        assertThat(true).isFalse();
+    }
 }
